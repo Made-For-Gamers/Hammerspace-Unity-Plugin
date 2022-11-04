@@ -1,15 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class WalletLogin: MonoBehaviour
 {
-    public Toggle rememberMe;
+    public Toggle rememberMeToggle;
+    public Button loginButton;
 
     void Start() {
         PlayerPrefs.SetString("Account", null);
+
+        //UI Elements
+        var uiRoot = GetComponent<UIDocument>().rootVisualElement;
+        rememberMeToggle = uiRoot.Q<Toggle>("toggle-rememberme");
+        loginButton = uiRoot.Q<Button>("button-login");
+
+        //UI Events
+        loginButton.clicked += OnLogin;
+
         // if remember me is checked, set the account to the saved account
         if (PlayerPrefs.HasKey("RememberMe") && PlayerPrefs.HasKey("Account"))
         {
@@ -20,6 +31,7 @@ public class WalletLogin: MonoBehaviour
             }
         }
     }
+
 
     async public void OnLogin()
     {
@@ -38,7 +50,7 @@ public class WalletLogin: MonoBehaviour
         if (account.Length == 42 && expirationTime >= now) {
             // save account
             PlayerPrefs.SetString("Account", account);
-            if (rememberMe.isOn)
+            if (rememberMeToggle.value == true)
                 PlayerPrefs.SetInt("RememberMe", 1);
             else
                 PlayerPrefs.SetInt("RememberMe", 0);
