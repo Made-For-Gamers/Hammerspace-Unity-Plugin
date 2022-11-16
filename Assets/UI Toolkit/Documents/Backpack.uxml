@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/Base-UI-Style.uss?fileID=7433441132597879392&amp;guid=668a339d836826649967f50196caa1a2&amp;type=3#Base-UI-Style" />
+    <ui:VisualElement name="background" class="background">
+        <ui:VisualElement name="header" class="header-style header header-panel">
+            <ui:VisualElement name="heading" style="height: 100px;">
+                <ui:Label text="HAMMERSPACE" display-tooltip-when-elided="true" name="name" class="header-text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="menu" style="height: 80px; left: 100px; right: 100px; flex-shrink: 0; flex-direction: row; width: 2100px;">
+                <ui:Button text="Add Item" display-tooltip-when-elided="true" class="button-style" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="body" class="body">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="scrollview" mode="Vertical" focusable="true" touch-scroll-type="Elastic" vertical-page-size="-1000" style="flex-grow: 0; flex-shrink: 0; width: 2300px; height: 1000px; flex-direction: row;">
+                <ui:VisualElement name="item-panel" class="item-panel" />
+                <ui:VisualElement name="item-panel" class="item-panel" />
+                <ui:VisualElement name="item-panel" class="item-panel" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
