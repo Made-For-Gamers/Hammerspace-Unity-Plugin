@@ -10,7 +10,9 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="body" class="body">
-            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="scrollview" mode="Vertical" focusable="true" touch-scroll-type="Elastic" vertical-page-size="-1000" style="flex-grow: 0; flex-shrink: 1; width: 2300px; height: 1000px; flex-direction: row; align-items: stretch; justify-content: flex-start;" />
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="scrollview" mode="Vertical" focusable="true" touch-scroll-type="Elastic" vertical-page-size="-1000" horizontal-scroller-visibility="Auto" style="width: 2300px; height: 1000px; align-items: stretch; justify-content: flex-start;">
+                <ui:VisualElement name="itemLayout" style="flex-direction: row; flex-grow: 0; flex-wrap: wrap;" />
+            </ui:ScrollView>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
