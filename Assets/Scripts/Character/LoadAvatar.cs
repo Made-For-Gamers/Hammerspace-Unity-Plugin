@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using GLTFast.Loading;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 namespace GLTFast
 {

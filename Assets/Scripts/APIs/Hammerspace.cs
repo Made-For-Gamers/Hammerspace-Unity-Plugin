@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Specialized;
 
 [System.Serializable]
 
-public class BackPack 
+public class Hammerspace
 {
     public string id;
     public string owner;
@@ -18,7 +16,17 @@ public class BackPackItems
     public string content;
     public string source;
     public string category;
-    public string metadata;
+    public MetaData metadata;
     public string createdAt;
-    public string updateAt;
+    public string updatedAt;
 }
+
+public class MetaData
+{
+    public string type;
+    public string source;
+    public string bodyType;
+    public string fileFormat;
+}
+
+
