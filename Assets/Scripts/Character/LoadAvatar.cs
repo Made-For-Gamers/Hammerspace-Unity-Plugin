@@ -1,8 +1,10 @@
+using UnityEngine;
+using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
 using GLTFast.Loading;
-using UnityEngine;
-using System.Collections;
+using GLTFast.Logging;
+using GLTFast.Materials;
 
 namespace GLTFast
 {
@@ -20,21 +22,13 @@ namespace GLTFast
         [Tooltip("If checked, url is treated as relative StreamingAssets path.")]
         public bool streamingAsset = false;
 
-        private Animator animator;
 
-        /// <summary>
-        /// Latest scene's instance.  
-        /// </summary>
+        /// Latest scene's instance.
         public GameObjectInstantiator.SceneInstance sceneInstance { get; protected set; }
 
         public string FullUrl => streamingAsset
             ? Path.Combine(Application.streamingAssetsPath, url)
             : url;
-
-        private void Awake()
-        {
-            animator = GetComponent<Animator>();
-        }
 
         protected virtual async void Start()
         {
@@ -51,7 +45,6 @@ namespace GLTFast
             await Load(FullUrl);
         }
 
-
         public override async Task<bool> Load(
             string url,
             IDownloadProvider downloadProvider = null,
@@ -63,18 +56,17 @@ namespace GLTFast
             logger = logger ?? new ConsoleLogger();
             var success = await base.Load(url, downloadProvider, deferAgent, materialGenerator, logger);
             if (success)
-            {                
+            {
                 if (deferAgent != null) await deferAgent.BreakPoint();
                 // Auto-Instantiate
                 if (sceneId >= 0)
                 {
                     InstantiateScene(sceneId, logger);
-                                    }
+                }
                 else
                 {
                     Instantiate(logger);
                 }
-                StartCoroutine(RebindAnimator());
             }
             return success;
         }
@@ -90,9 +82,7 @@ namespace GLTFast
             base.PostInstantiation(instantiator, success);
         }
 
-        /// <summary>
         /// Removes previously instantiated scene(s)
-        /// </summary>
         public override void ClearScenes()
         {
             foreach (Transform child in transform)
@@ -102,14 +92,14 @@ namespace GLTFast
             sceneInstance = null;
         }
 
-        //Reset animator
-        IEnumerator RebindAnimator()
-        {
-            print("animatator rebind");
-            animator.enabled = false;
-            yield return new WaitForSeconds(0.1f);
-            animator.enabled = true;
-            animator.Rebind();
-        }
+        ////Reset animator
+        //IEnumerator RebindAnimator()
+        //{
+        //    print("animatator rebind");
+        //    animator.enabled = false;
+        //    yield return new WaitForSeconds(0.1f);
+        //    animator.enabled = true;
+        //    animator.Rebind();
+        //}
     }
 }

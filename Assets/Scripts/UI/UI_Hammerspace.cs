@@ -1,4 +1,3 @@
-using GLTFast.FakeSchema;
 using UnityEngine;
 using UnityEngine.UIElements;
 
