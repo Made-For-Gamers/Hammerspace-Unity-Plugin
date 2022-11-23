@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2002.0312, g: 2863.1543, b: 3891.4824, a: 1}
+  m_IndirectSpecularColor: {r: 1572.267, g: 3774.9336, b: 4974.9297, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,69 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &231187485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231187486}
+  - component: {fileID: 231187487}
+  - component: {fileID: 231187488}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &231187486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231187485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 413592410}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231187487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231187485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: b90cdcb865a37a441b4e6a2aef0f9043, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: ac857910d2dcc064a9836a2393ecd909,
+    type: 3}
+  m_SortingOrder: 0
+--- !u!114 &231187488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231187485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4706d7f7dbc5e4e9be8ad20793d37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelLoader: {fileID: 775830453}
 --- !u!1 &324112493
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +459,7 @@ Transform:
   - {fileID: 1920683053}
   - {fileID: 1704346250}
   - {fileID: 324112496}
+  - {fileID: 231187486}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -627,7 +691,7 @@ GameObject:
   - component: {fileID: 775830455}
   - component: {fileID: 775830454}
   m_Layer: 0
-  m_Name: GLTFObjectLoad
+  m_Name: ModelLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,10 +716,9 @@ MonoBehaviour:
     defaultMinFilterMode: 9729
     defaultMagFilterMode: 9729
     anisotropicFilterLevel: 1
-  url: https://bafybeifuajubiylw76inf6bbnjreksnw4rz3fkxdi5uhrae67j7mrrr3hq.ipfs.w3s.link/63624d1452b953b7b71f9fdb.glb
+  url: bafybeifuajubiylw76inf6bbnjreksnw4rz3fkxdi5uhrae67j7mrrr3hq/63624d1452b953b7b71f9fdb.glb
   loadOnStartup: 1
   sceneId: 0
-  streamingAsset: 0
 --- !u!4 &775830455
 Transform:
   m_ObjectHideFlags: 0

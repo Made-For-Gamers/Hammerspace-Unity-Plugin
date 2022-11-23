@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Made For Gamers/Scenes/WalletLogin.unity
+    path: Assets/Scenes/WalletLogin.unity
     guid: cc28e1075e9584f1698219d041278648
   - enabled: 0
-    path: Assets/Made For Gamers/Scenes/Backpack.unity
+    path: Assets/Scenes/Backpack.unity
     guid: d98bdf439073d6f4f883a342e31ba32c
   - enabled: 1
     path: Assets/Made For Gamers/Scenes/Avatar.unity

@@ -19,30 +19,27 @@ namespace GLTFast
         [Tooltip("Override scene to load (-1 loads glTFs default scene)")]
         public int sceneId = -1;
 
-        [Tooltip("If checked, url is treated as relative StreamingAssets path.")]
-        public bool streamingAsset = false;
-
-
         /// Latest scene's instance.
         public GameObjectInstantiator.SceneInstance sceneInstance { get; protected set; }
 
-        public string FullUrl => streamingAsset
-            ? Path.Combine(Application.streamingAssetsPath, url)
-            : url;
-
-        protected virtual async void Start()
+        protected void Start()
         {
             if (loadOnStartup && !string.IsNullOrEmpty(url))
             {
                 // Automatic load on startup
-                await Load(FullUrl);
+                LoadTheAvatar(url);
             }
         }
 
         public async void LoadTheAvatar(string newUrl)
         {
+            ClearScenes();
             url = newUrl;
-            await Load(FullUrl);
+            string start = newUrl.Substring(0, newUrl.LastIndexOf("/"));
+            string end = newUrl.Substring(newUrl.LastIndexOf("/"));
+            url = "https://" + start + ".ipfs.w3s.link" + end;
+            print(url);
+            await Load(url);
         }
 
         public override async Task<bool> Load(
@@ -91,15 +88,5 @@ namespace GLTFast
             }
             sceneInstance = null;
         }
-
-        ////Reset animator
-        //IEnumerator RebindAnimator()
-        //{
-        //    print("animatator rebind");
-        //    animator.enabled = false;
-        //    yield return new WaitForSeconds(0.1f);
-        //    animator.enabled = true;
-        //    animator.Rebind();
-        //}
     }
 }
