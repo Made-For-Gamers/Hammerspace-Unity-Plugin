@@ -275,7 +275,7 @@
             ]
         },
         {
-            "name": "Misc",
+            "name": "UI",
             "id": "c4d6afe3-67ef-478b-8fce-276bfea5f820",
             "actions": [
                 {
@@ -291,6 +291,15 @@
                     "name": "RPMeUrlUI",
                     "type": "Button",
                     "id": "42982f78-5de2-4aab-a6cd-7c71df8df525",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hammersapce",
+                    "type": "Button",
+                    "id": "ff1f67cc-9450-4dd9-8051-cc701c602ad3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -317,6 +326,17 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "RPMeUrlUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cd278a9-e9c3-4a8a-84f8-fa33f590cc40",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Hammersapce",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

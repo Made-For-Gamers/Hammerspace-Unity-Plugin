@@ -297,7 +297,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Misc"",
+            ""name"": ""UI"",
             ""id"": ""c4d6afe3-67ef-478b-8fce-276bfea5f820"",
             ""actions"": [
                 {
@@ -313,6 +313,15 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""name"": ""RPMeUrlUI"",
                     ""type"": ""Button"",
                     ""id"": ""42982f78-5de2-4aab-a6cd-7c71df8df525"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hammersapce"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff1f67cc-9450-4dd9-8051-cc701c602ad3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -339,6 +348,17 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""RPMeUrlUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cd278a9-e9c3-4a8a-84f8-fa33f590cc40"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Hammersapce"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -402,10 +422,11 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
-        // Misc
-        m_Misc = asset.FindActionMap("Misc", throwIfNotFound: true);
-        m_Misc_Quit = m_Misc.FindAction("Quit", throwIfNotFound: true);
-        m_Misc_RPMeUrlUI = m_Misc.FindAction("RPMeUrlUI", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Quit = m_UI.FindAction("Quit", throwIfNotFound: true);
+        m_UI_RPMeUrlUI = m_UI.FindAction("RPMeUrlUI", throwIfNotFound: true);
+        m_UI_Hammersapce = m_UI.FindAction("Hammersapce", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -527,34 +548,39 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // Misc
-    private readonly InputActionMap m_Misc;
-    private IMiscActions m_MiscActionsCallbackInterface;
-    private readonly InputAction m_Misc_Quit;
-    private readonly InputAction m_Misc_RPMeUrlUI;
-    public struct MiscActions
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Quit;
+    private readonly InputAction m_UI_RPMeUrlUI;
+    private readonly InputAction m_UI_Hammersapce;
+    public struct UIActions
     {
         private @InputSystem m_Wrapper;
-        public MiscActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Quit => m_Wrapper.m_Misc_Quit;
-        public InputAction @RPMeUrlUI => m_Wrapper.m_Misc_RPMeUrlUI;
-        public InputActionMap Get() { return m_Wrapper.m_Misc; }
+        public UIActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Quit => m_Wrapper.m_UI_Quit;
+        public InputAction @RPMeUrlUI => m_Wrapper.m_UI_RPMeUrlUI;
+        public InputAction @Hammersapce => m_Wrapper.m_UI_Hammersapce;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MiscActions set) { return set.Get(); }
-        public void SetCallbacks(IMiscActions instance)
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
         {
-            if (m_Wrapper.m_MiscActionsCallbackInterface != null)
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Quit.started -= m_Wrapper.m_MiscActionsCallbackInterface.OnQuit;
-                @Quit.performed -= m_Wrapper.m_MiscActionsCallbackInterface.OnQuit;
-                @Quit.canceled -= m_Wrapper.m_MiscActionsCallbackInterface.OnQuit;
-                @RPMeUrlUI.started -= m_Wrapper.m_MiscActionsCallbackInterface.OnRPMeUrlUI;
-                @RPMeUrlUI.performed -= m_Wrapper.m_MiscActionsCallbackInterface.OnRPMeUrlUI;
-                @RPMeUrlUI.canceled -= m_Wrapper.m_MiscActionsCallbackInterface.OnRPMeUrlUI;
+                @Quit.started -= m_Wrapper.m_UIActionsCallbackInterface.OnQuit;
+                @Quit.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnQuit;
+                @Quit.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnQuit;
+                @RPMeUrlUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRPMeUrlUI;
+                @RPMeUrlUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRPMeUrlUI;
+                @RPMeUrlUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRPMeUrlUI;
+                @Hammersapce.started -= m_Wrapper.m_UIActionsCallbackInterface.OnHammersapce;
+                @Hammersapce.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnHammersapce;
+                @Hammersapce.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnHammersapce;
             }
-            m_Wrapper.m_MiscActionsCallbackInterface = instance;
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Quit.started += instance.OnQuit;
@@ -563,10 +589,13 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @RPMeUrlUI.started += instance.OnRPMeUrlUI;
                 @RPMeUrlUI.performed += instance.OnRPMeUrlUI;
                 @RPMeUrlUI.canceled += instance.OnRPMeUrlUI;
+                @Hammersapce.started += instance.OnHammersapce;
+                @Hammersapce.performed += instance.OnHammersapce;
+                @Hammersapce.canceled += instance.OnHammersapce;
             }
         }
     }
-    public MiscActions @Misc => new MiscActions(this);
+    public UIActions @UI => new UIActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -611,9 +640,10 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
     }
-    public interface IMiscActions
+    public interface IUIActions
     {
         void OnQuit(InputAction.CallbackContext context);
         void OnRPMeUrlUI(InputAction.CallbackContext context);
+        void OnHammersapce(InputAction.CallbackContext context);
     }
 }

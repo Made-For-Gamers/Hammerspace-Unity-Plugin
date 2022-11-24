@@ -37,8 +37,7 @@ namespace GLTFast
             url = newUrl;
             string start = newUrl.Substring(0, newUrl.LastIndexOf("/"));
             string end = newUrl.Substring(newUrl.LastIndexOf("/"));
-            url = "https://" + start + ".ipfs.w3s.link" + end;
-            print(url);
+            url = "https://" + start + ".ipfs.w3s.link" + end;          
             await Load(url);
         }
 
